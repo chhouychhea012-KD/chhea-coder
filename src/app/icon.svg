@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chhea Chhouy">
+  <defs>
+    <linearGradient id="blue" x1="8" y1="8" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25D7FF"/>
+      <stop offset=".58" stop-color="#1678FF"/>
+      <stop offset="1" stop-color="#2E42FF"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="28" y1="32" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9464FF"/>
+      <stop offset="1" stop-color="#5D22F5"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#blue)" d="M32 4 8 18v28l24 14V44L22 38V26l10-6V4Z"/>
+  <path fill="#08235F" d="m32 12-17 10v20l17 10V40L23 35V29l9-5V12Z"/>
+  <path fill="url(#blue)" d="m32 4 24 14-9 5-15-9V4Z"/>
+  <path fill="url(#violet)" d="m32 60 24-14V30l-9 5v11L32 55v5Z"/>
+  <path fill="#4967FF" d="m32 44 15-9v11L32 55V44Z"/>
+</svg>
