@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { profile, projects, text } from "@/data/portfolio";
+import { profile, projects, text, ui } from "@/data/portfolio";
 
 export type Language = "en" | "km";
 
@@ -31,13 +31,20 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = language;
     const projectSlug = pathname.startsWith("/projects/") ? pathname.split("/")[2] : undefined;
     const project = projectSlug ? projects.find((item) => item.slug === projectSlug) : undefined;
+    const activityPage = pathname.startsWith("/activities");
     const pageTitle = project
       ? `${text(project.title, language)} | ${profile.name}`
+      : activityPage
+        ? language === "en" ? `Activities | Volunteer Mentorship | ${profile.name}` : `សកម្មភាព | ការណែនាំស្ម័គ្រចិត្ត | ${profile.name}`
       : language === "en"
         ? `${profile.name} — ${text(profile.title, "en")}`
         : `${profile.khmerName} — ${text(profile.title, "km")}`;
     document.title = pageTitle;
-    const description = project ? text(project.description, language) : text(profile.tagline, language);
+    const description = project
+      ? text(project.description, language)
+      : activityPage
+        ? ui(language, "Volunteer mentoring activity: guiding junior students through the VC1 Project and real-world development practices.", "សកម្មភាពណែនាំស្ម័គ្រចិត្ត ដើម្បីជួយនិស្សិតជំនាន់ក្រោយសម្រាប់គម្រោង VC1 និងការអភិវឌ្ឍជាក់ស្តែង។")
+        : text(profile.tagline, language);
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
   }, [language, pathname]);
 

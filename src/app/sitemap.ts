@@ -5,6 +5,8 @@ import { portfolioSections } from "@/lib/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    { url: `${SITE_URL}/activities`, changeFrequency: "monthly" as const, priority: 0.8, alternates: { languages: { "en-US": `${SITE_URL}/activities`, "km-KH": `${SITE_URL}/activities/km` } } },
+    { url: `${SITE_URL}/activities/km`, changeFrequency: "monthly" as const, priority: 0.7, alternates: { languages: { "en-US": `${SITE_URL}/activities`, "km-KH": `${SITE_URL}/activities/km` } } },
     ...portfolioSections.flatMap((section) => [
       { url: `${SITE_URL}/${section}`, changeFrequency: "monthly" as const, priority: section === "home" ? 1 : 0.8, alternates: { languages: { "en-US": `${SITE_URL}/${section}`, "km-KH": `${SITE_URL}/${section}/km` } } },
       { url: `${SITE_URL}/${section}/km`, changeFrequency: "monthly" as const, priority: section === "home" ? 0.9 : 0.7, alternates: { languages: { "en-US": `${SITE_URL}/${section}`, "km-KH": `${SITE_URL}/${section}/km` } } },
