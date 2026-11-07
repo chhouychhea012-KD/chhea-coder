@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { createContext, useContext, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { profile, projects, text } from "@/data/portfolio";
 
 export type Language = "en" | "km";
@@ -13,27 +13,24 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
-  const pathname = usePathname();
+function getLanguageFromPath(pathname: string) {
+  return pathname.endsWith("/km") ? "km" : "en";
+}
 
-  useEffect(() => {
-    let saved: string | null = null;
-    try {
-      saved = localStorage.getItem("portfolio-language");
-    } catch {
-      // Storage may be disabled; English remains the default language.
-    }
-    if (saved === "km") {
-      document.documentElement.lang = "km";
-      queueMicrotask(() => setLanguage("km"));
-    }
-  }, []);
+function getLocalizedPath(pathname: string, language: Language) {
+  const englishPath = pathname === "/" ? "/home" : pathname.endsWith("/km") ? pathname.slice(0, -3) : pathname;
+  return language === "km" ? `${englishPath}/km` : englishPath;
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const language = getLanguageFromPath(pathname);
 
   useEffect(() => {
     document.documentElement.lang = language;
     const projectSlug = pathname.startsWith("/projects/") ? pathname.split("/")[2] : undefined;
-    const project = projectSlug ? projects.find(item => item.slug === projectSlug) : undefined;
+    const project = projectSlug ? projects.find((item) => item.slug === projectSlug) : undefined;
     const pageTitle = project
       ? `${text(project.title, language)} | ${profile.name}`
       : language === "en"
@@ -44,17 +41,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
   }, [language, pathname]);
 
-  function updateLanguage(next: Language) {
-    setLanguage(next);
-    try {
-      localStorage.setItem("portfolio-language", next);
-    } catch {
-      // Keep the selected language for this page if persistence is unavailable.
-    }
-    document.documentElement.lang = next === "km" ? "km" : "en";
+  function setLanguage(next: Language) {
+    if (next !== language) router.push(getLocalizedPath(pathname, next));
   }
 
-  return <LanguageContext.Provider value={{ language, setLanguage: updateLanguage }}>{children}</LanguageContext.Provider>;
+  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {

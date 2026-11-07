@@ -4,10 +4,11 @@ import { ArrowUpRight, Layers2 } from "lucide-react";
 import { SkillBadge } from "@/components/skill-badge";
 import { text, ui, type Project } from "@/data/portfolio";
 import { useLanguage } from "@/components/language-provider";
+import { projectHref } from "@/lib/routes";
 
 export function ProjectCard({ project, large = false }: { project: Project; large?: boolean }) {
   const { language } = useLanguage();
-  return <Link href={`/projects/${project.slug}`} className={`project-card project-${project.accent} ${large ? "project-card-featured" : ""}`}>
+  return <Link href={projectHref(project.slug, language)} className={`project-card project-${project.accent} ${large ? "project-card-featured" : ""}`}>
     <div className="project-art" aria-hidden="true">
       <div className="art-orbit orbit-one" /><div className="art-orbit orbit-two" />
       <div className="art-panel"><div className="art-panel-top"><i/><i/><i/><span>{ui(language, "PROJECT", "គម្រោង")} / {project.number}</span></div>

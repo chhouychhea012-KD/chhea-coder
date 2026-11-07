@@ -1,20 +1,26 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { ArrowDown, ArrowUpRight, BriefcaseBusiness, CalendarDays, ChevronRight, Code2, Database, Download, Github, GraduationCap, Linkedin, MapPin, ServerCog, Sparkles, Terminal, Workflow, Zap } from "lucide-react";
 import { ContactPanel } from "@/components/contact-panel";
 import { ProjectExplorer } from "@/components/project-explorer";
 import { SkillBadge } from "@/components/skill-badge";
-import { education, experiences, languages, profile, skillGroups, text, ui, values, workshops } from "@/data/portfolio";
+import { education, experiences, languages, profile, projects, skillGroups, text, ui, values, workshops } from "@/data/portfolio";
 import { useLanguage } from "@/components/language-provider";
+import { sectionHref, type PortfolioSection } from "@/lib/routes";
 
 function SectionIntro({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
   return <div className="section-intro"><div className="eyebrow"><span className="eyebrow-dash" />{eyebrow}</div><h2>{title}</h2>{subtitle && <p>{subtitle}</p>}</div>;
 }
 
-export default function HomePage() {
+export default function HomePage({ section = "home" }: { section?: PortfolioSection }) {
   const { language } = useLanguage();
   const t = (value: { en: string; km: string }) => text(value, language);
+  useEffect(() => {
+    if (section === "home") return;
+    requestAnimationFrame(() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }, [section]);
   return <main id="main-content">
     <section className="hero-section section" id="home">
       <div className="hero-grid-lines" aria-hidden="true" />
@@ -25,8 +31,8 @@ export default function HomePage() {
           <h1>{language === "en" ? <>I build <span className="gradient-text">useful digital products</span> with clarity &amp; care</> : <>ខ្ញុំបង្កើត <span className="gradient-text">ផលិតផលឌីជីថលមានប្រយោជន៍</span> ដោយយកចិត្តទុកដាក់</>}<span className="period">.</span></h1>
           <p className="hero-description">{t(profile.tagline)}</p>
           <div className="hero-actions">
-            <Link href="/#projects" className="button button-primary">{language === "en" ? "Explore My Work" : "មើលគម្រោង"} <ArrowUpRight size={18} aria-hidden="true" /></Link>
-            <Link href="/#contact" className="button button-secondary">{language === "en" ? "Let's Connect" : "ទំនាក់ទំនង"} <ChevronRight size={18} aria-hidden="true" /></Link>
+            <Link href={sectionHref("projects", language)} className="button button-primary">{language === "en" ? "Explore My Work" : "មើលគម្រោង"} <ArrowUpRight size={18} aria-hidden="true" /></Link>
+            <Link href={sectionHref("contact", language)} className="button button-secondary">{language === "en" ? "Let's Connect" : "ទំនាក់ទំនង"} <ChevronRight size={18} aria-hidden="true" /></Link>
           </div>
           <div className="hero-social-row"><span>{ui(language, "FIND ME ON", "ស្វែងរកខ្ញុំតាម")}</span>
             <a href="https://github.com/Chhea012" target="_blank" rel="noopener noreferrer" aria-label={ui(language, "Chhea on GitHub", "GitHub របស់ Chhea")}><Github size={18} /></a>
@@ -45,7 +51,7 @@ export default function HomePage() {
           <span className="hero-coordinate" aria-hidden="true">11.5564° N / 104.9282° E</span>
         </div>
       </div>
-      <div className="container hero-bottom"><a href="#about" className="scroll-cue"><ArrowDown size={17} /> {ui(language, "SCROLL TO EXPLORE", "រំកិលចុះដើម្បីស្វែងយល់")}</a><span>{ui(language, "DESIGN · DEVELOPMENT · DEPLOYMENT", "រចនា · អភិវឌ្ឍ · ដាក់ឱ្យប្រើ")}</span></div>
+      <div className="container hero-bottom"><Link href={sectionHref("about", language)} className="scroll-cue"><ArrowDown size={17} /> {ui(language, "SCROLL TO EXPLORE", "រំកិលចុះដើម្បីស្វែងយល់")}</Link><span>{ui(language, "DESIGN · DEVELOPMENT · DEPLOYMENT", "រចនា · អភិវឌ្ឍ · ដាក់ឱ្យប្រើ")}</span></div>
     </section>
 
     <section id="about" className="section about-section"><div className="container">
@@ -63,7 +69,7 @@ export default function HomePage() {
     </div></section>
 
     <section id="projects" className="section projects-section"><div className="container">
-      <div className="projects-heading"><SectionIntro eyebrow={ui(language, "03 / SELECTED WORK", "០៣ / ស្នាដៃដែលបានជ្រើសរើស")} title={ui(language, "Proof of work, not just words.", "បង្ហាញស្នាដៃជាក់ស្តែង មិនមែនត្រឹមតែពាក្យសម្ដី។")} subtitle={ui(language, "Professional contributions and hands-on projects. Explore each story for my role, technologies and core features.", "ស្វែងយល់ពីការរួមចំណែកក្នុងការងារវិជ្ជាជីវៈ និងគម្រោងអនុវត្តផ្ទាល់ ដើម្បីមើលតួនាទី បច្ចេកវិទ្យា និងមុខងារសំខាន់ៗរបស់ខ្ញុំ។")} /><span className="project-counter">08 / {ui(language, "PROJECTS", "គម្រោង")}</span></div>
+      <div className="projects-heading"><SectionIntro eyebrow={ui(language, "03 / SELECTED WORK", "០៣ / ស្នាដៃដែលបានជ្រើសរើស")} title={ui(language, "Proof of work, not just words.", "បង្ហាញស្នាដៃជាក់ស្តែង មិនមែនត្រឹមតែពាក្យសម្ដី។")} subtitle={ui(language, "Professional contributions and hands-on projects. Explore each story for my role, technologies and core features.", "ស្វែងយល់ពីការរួមចំណែកក្នុងការងារវិជ្ជាជីវៈ និងគម្រោងអនុវត្តផ្ទាល់ ដើម្បីមើលតួនាទី បច្ចេកវិទ្យា និងមុខងារសំខាន់ៗរបស់ខ្ញុំ។")} /><span className="project-counter">{String(projects.length).padStart(2, "0")} / {ui(language, "PROJECTS", "គម្រោង")}</span></div>
       <ProjectExplorer />
     </div></section>
 

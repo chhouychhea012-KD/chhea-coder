@@ -17,11 +17,14 @@ export const metadata: Metadata = {
   creator: profile.name,
   publisher: profile.name,
   category: "Technology",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/home",
+    languages: { "en-US": "/home", "km-KH": "/home/km" },
+  },
   openGraph: {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    url: SITE_URL,
+    url: `${SITE_URL}/home`,
     siteName: SITE_NAME,
     locale: "en_US",
     alternateLocale: "km_KH",

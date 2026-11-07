@@ -31,6 +31,20 @@ export const projects: Project[] = [
   project("task-management-app", "06", "Web Applications", "blue", l("Task Management App", "កម្មវិធីគ្រប់គ្រងកិច្ចការ"), l("Task planning app for creating, organising, tracking status, and calendar integration.", "កម្មវិធីរៀបចំកិច្ចការសម្រាប់បង្កើត រៀបចំ តាមដានស្ថានភាព និងភ្ជាប់ប្រតិទិន។"), ["HTML", "CSS", "SASS", "Bootstrap", "JavaScript", "Chart.js", "Firebase", "localStorage", "Figma", "GitHub"], l("Jan 13 – Jan 25, 2025", "13 មករា – 25 មករា 2025"), l("Team Lead", "ប្រធានក្រុម"), l("School Project", "គម្រោងសិក្សា")),
   project("web-scraping-automation", "07", "Automation", "mint", l("Web Scraping Automation", "ស្វ័យប្រវត្តិកម្ម Web Scraping"), l("Python desktop tool with a user-friendly GUI to collect and organise website data for analysis.", "ឧបករណ៍ Desktop ដោយ Python មាន GUI ងាយប្រើ សម្រាប់ប្រមូល និងរៀបចំទិន្នន័យវេបសាយសម្រាប់វិភាគ។"), ["Python", "Requests", "BeautifulSoup", "Tkinter", "JSON", "Git", "GitHub"], l("Nov 18 – Nov 28, 2024", "18 វិច្ឆិកា – 28 វិច្ឆិកា 2024"), l("Team Lead", "ប្រធានក្រុម"), l("School Project", "គម្រោងសិក្សា")),
   project("music-band-website", "08", "Web Applications", "purple", l("Music Band Website", "វេបសាយក្រុមតន្ត្រី"), l("Responsive website to showcase band information, videos, and music for audiences.", "វេបសាយឆ្លើយតបសម្រាប់បង្ហាញព័ត៌មានក្រុមតន្ត្រី វីដេអូ និងតន្ត្រីសម្រាប់ទស្សនិកជន។"), ["HTML", "CSS", "SASS", "Figma", "GitHub"], l("Oct 21 – Nov 5, 2024", "21 តុលា – 5 វិច្ឆិកា 2024"), l("Team Lead", "ប្រធានក្រុម"), l("School Project", "គម្រោងសិក្សា")),
+  {
+    ...project("pnc-team-startup-portfolio", "09", "Web Applications", "blue", l("PNC Team Startup Portfolio", "ផលប័ត្រក្រុម PNC Team Startup"), l("Public portfolio for a seven-member PNC student technology team, presenting individual profiles, core expertise, project case studies and a shared delivery approach.", "ផលប័ត្រសាធារណៈសម្រាប់ក្រុមបច្ចេកវិទ្យានិស្សិត PNC ដែលមានសមាជិក ៧ នាក់ បង្ហាញប្រវត្តិសមាជិក ជំនាញស្នូល គម្រោង និងវិធីសាស្ត្រធ្វើការរួមគ្នា។"), ["Next.js", "AWS", "Hostinger", "Domain Management"], l("2026", "២០២៦"), l("Full-Stack Developer · Team Contributor", "អ្នកអភិវឌ្ឍន៍ Full-Stack · សមាជិកក្រុម"), l("PNC Student Technology Team", "ក្រុមបច្ចេកវិទ្យានិស្សិត PNC")),
+    challenge: l("The team needed one credible public space to tell a shared story while giving every member’s distinct skills, experience and project work equal visibility.", "ក្រុមត្រូវការកន្លែងសាធារណៈដែលអាចបង្ហាញរឿងរ៉ាវរួមគ្នា ខណៈដែលធ្វើឱ្យជំនាញ បទពិសោធន៍ និងគម្រោងរបស់សមាជិកម្នាក់ៗមើលឃើញបានស្មើគ្នា។"),
+    solution: l("Built a responsive Next.js team portfolio that connects member profiles, expertise areas, case studies and a clear delivery process, then deployed it with AWS, Hostinger and a custom domain.", "បានបង្កើតផលប័ត្រក្រុមឆ្លើយតបដោយ Next.js ដែលភ្ជាប់ប្រវត្តិសមាជិក ផ្នែកជំនាញ គម្រោង និងដំណើរការធ្វើការច្បាស់លាស់ ហើយដាក់ឱ្យប្រើជាមួយ AWS, Hostinger និងដូមេនផ្ទាល់ខ្លួន។"),
+    features: {
+      en: ["Seven individual team-member profiles", "Team expertise across development, QA, planning, data and technical operations", "Project case studies and practical delivery process", "Live custom-domain deployment"],
+      km: ["ប្រវត្តិសមាជិកក្រុមចំនួន ៧ នាក់", "ជំនាញក្រុមលើការអភិវឌ្ឍ QA ការរៀបចំផែនការ ទិន្នន័យ និងប្រតិបត្តិការបច្ចេកទេស", "គម្រោង និងដំណើរការអនុវត្តជាក់ស្តែង", "ដាក់ឱ្យប្រើផ្ទាល់ជាមួយដូមេនផ្ទាល់ខ្លួន"],
+    },
+    responsibilities: {
+      en: ["Built the public-facing team portfolio experience", "Organized team profiles, expertise and project content", "Contributed to deployment and domain-ready delivery"],
+      km: ["បង្កើតបទពិសោធន៍ផលប័ត្រក្រុមសម្រាប់សាធារណៈ", "រៀបចំមាតិកាប្រវត្តិសមាជិក ជំនាញ និងគម្រោង", "រួមចំណែកក្នុងការដាក់ឱ្យប្រើ និងរៀបចំដូមេន"],
+    },
+    liveUrl: "https://pncteamstartup.site/",
+  },
 ];
 
 export const experiences: Experience[] = [

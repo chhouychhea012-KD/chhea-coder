@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, CheckCircle2, G
 import { SkillBadge } from "@/components/skill-badge";
 import { useLanguage } from "@/components/language-provider";
 import { text, ui, type Project } from "@/data/portfolio";
+import { projectHref, sectionHref } from "@/lib/routes";
 
 function InfoSection({ label, heading, description }: { label: string; heading: string; description: string }) {
   return <article className="case-text-block"><span className="case-kicker">{label}</span><h2>{heading}</h2><p>{description}</p></article>;
@@ -20,7 +21,7 @@ export function ProjectDetail({ project, nextProject, index }: { project: Projec
 
   return <main id="main-content"><article className="case-page">
     <section className="case-hero"><div className="container">
-      <Link className="back-link" href="/#projects"><ArrowLeft size={17} /> {ui(language, "All projects", "គម្រោងទាំងអស់")}</Link>
+      <Link className="back-link" href={sectionHref("projects", language)}><ArrowLeft size={17} /> {ui(language, "All projects", "គម្រោងទាំងអស់")}</Link>
       <div className="case-hero-copy"><div className="eyebrow"><span className="eyebrow-dash" />{ui(language, "PROJECT", "គម្រោង")} / {project.number} <span className="case-dot">•</span> {category}</div>
         <h1>{t(project.title)}<span className="period">.</span></h1><p>{t(project.description)}</p>
       </div><div className="case-meta-grid"><div><span>{ui(language, "PROJECT CONTEXT", "បរិបទគម្រោង")}</span><strong>{projectContext}</strong></div><div><span>{ui(language, "MY ROLE", "តួនាទីរបស់ខ្ញុំ")}</span><strong>{role}</strong></div><div><span>{ui(language, "PERIOD", "រយៈពេល")}</span><strong>{period}</strong></div><div><span>{ui(language, "TECHNOLOGIES", "បច្ចេកវិទ្យា")}</span><strong>{project.technologies.length} {ui(language, "tools", "ឧបករណ៍")}</strong></div></div>
@@ -34,6 +35,6 @@ export function ProjectDetail({ project, nextProject, index }: { project: Projec
       <div className="case-features"><span className="case-kicker">{ui(language, "03 / CORE FEATURES", "០៣ / មុខងារសំខាន់ៗ")}</span><h2>{ui(language, "What the project includes", "អ្វីខ្លះដែលមានក្នុងគម្រោង")}</h2><div className="feature-list">{project.features[language].map(f => <div key={f}><CheckCircle2 size={18}/><span>{f}</span></div>)}</div></div>
       <div className="case-features"><span className="case-kicker">{ui(language, "04 / MY CONTRIBUTION", "០៤ / ការរួមចំណែករបស់ខ្ញុំ")}</span><h2>{ui(language, "My responsibilities", "ទំនួលខុសត្រូវរបស់ខ្ញុំ")}</h2><div className="feature-list">{project.responsibilities[language].map(f => <div key={f}><BriefcaseBusiness size={18}/><span>{f}</span></div>)}</div></div>
     </div><aside className="case-details-aside"><h3>{ui(language, "Built with", "បង្កើតដោយប្រើ")}</h3><div className="case-stack">{project.technologies.map(t=><span key={t}><SkillBadge name={t}/>{t}</span>)}</div><div className="case-external">{project.repoUrl && <a className="button button-primary" href={project.repoUrl} target="_blank" rel="noopener noreferrer"><Github size={17}/> {ui(language, "View repository", "មើលឃ្លាំងកូដ")} <ArrowUpRight size={17}/></a>}{project.liveUrl && <a className="button button-secondary" href={project.liveUrl} target="_blank" rel="noopener noreferrer">{ui(language, "Visit live project", "មើលគម្រោងផ្ទាល់")} <ArrowUpRight size={17}/></a>}{!project.repoUrl && !project.liveUrl && <p>{ui(language, "Public source code or live demo is not available for this project.", "មិនមានកូដប្រភពសាធារណៈ ឬ Demo ផ្ទាល់សម្រាប់គម្រោងនេះទេ។")}</p>}</div></aside></section>
-    <section className="case-next"><div className="container case-next-inner"><div><span>{ui(language, "UP NEXT", "បន្ទាប់ទៀត")}</span><h2>{t(nextProject.title)}</h2></div><Link href={"/projects/" + nextProject.slug} className="round-next" aria-label={ui(language, "View", "មើល") + " " + t(nextProject.title)}><ArrowRight size={26}/></Link></div></section>
+    <section className="case-next"><div className="container case-next-inner"><div><span>{ui(language, "UP NEXT", "បន្ទាប់ទៀត")}</span><h2>{t(nextProject.title)}</h2></div><Link href={projectHref(nextProject.slug, language)} className="round-next" aria-label={ui(language, "View", "មើល") + " " + t(nextProject.title)}><ArrowRight size={26}/></Link></div></section>
   </article></main>;
 }
