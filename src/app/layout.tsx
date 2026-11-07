@@ -49,7 +49,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               "@context": "https://schema.org",
               "@type": "Person",
               name: profile.name,
-              alternateName: profile.khmerName,
+              alternateName: ["Chhea Coder", profile.khmerName],
               url: SITE_URL,
               image: `${SITE_URL}${profile.portraitUrl}`,
               jobTitle: text(profile.title, "en"),

@@ -21,7 +21,7 @@ export default function HomePage() {
       <div className="container hero-layout">
         <div className="hero-copy">
           <div className="hero-availability"><span className="pulse-dot" /> {t(profile.title)} <span className="separator">/</span> {language === "en" ? "Based in Cambodia" : "នៅកម្ពុជា"}</div>
-          <div className="hero-mini">{ui(language, "HELLO, I’M", "សួស្តី ខ្ញុំឈ្មោះ")} <span>CHHEA CHHOUY</span></div>
+          <div className="hero-mini">{ui(language, "HELLO, I’M", "សួស្តី ខ្ញុំឈ្មោះ")} <span>{language === "en" ? "CHHEA CODER / CHHEA CHHOUY" : "CHHEA CODER / ឈយ ឈា"}</span></div>
           <h1>{language === "en" ? <>I build <span className="gradient-text">useful digital products</span> with clarity &amp; care</> : <>ខ្ញុំបង្កើត <span className="gradient-text">ផលិតផលឌីជីថលមានប្រយោជន៍</span> ដោយយកចិត្តទុកដាក់</>}<span className="period">.</span></h1>
           <p className="hero-description">{t(profile.tagline)}</p>
           <div className="hero-actions">
